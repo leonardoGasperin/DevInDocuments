@@ -1,1 +1,1 @@
-﻿Console.WriteLine("Hello DevInDocuments!");
+﻿Console.WriteLine("Hello DevInDocuments");
