@@ -1,6 +1,6 @@
 ﻿namespace DevInDocuments.Entities.Company
 {
-    internal class FuntionalitiesLicenses : DevInDocuments
+    internal class FuntionalitiesLicenses : DevInDocument
     {
         ///TODO
         /// Decide the acess nivel for atributes

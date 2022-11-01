@@ -1,6 +1,6 @@
 ﻿namespace DevInDocuments.Entities.Company
 {
-    internal class TaxInvoice : DevInDocuments
+    internal class TaxInvoice : DevInDocument
     {
         ///TODO
         /// Decide the acess nivel for atributes
