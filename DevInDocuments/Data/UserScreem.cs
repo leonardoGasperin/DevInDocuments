@@ -15,7 +15,6 @@ namespace DevInDocuments.Data
 
         public static void MainMenu()
         {
-            Console.Clear();
             Console.WriteLine("Please, what you want to do? Choose a option:\n" +
                                "1) Register document\n2) Edit document\n3) Screem document\n" +
                                "-1) Exit:");
@@ -23,10 +22,12 @@ namespace DevInDocuments.Data
             switch (Console.ReadLine())
             {
                 case "1":
+                    Console.Clear();
                     UserStream.RegisteringDocument();
                     break;
                 case "2":
-                    UserStream.EditingDocument();
+                    Console.Clear();
+                    UserStream.SearchOneDocument(UserStream.RecivieDocCode());
                     break;
                 case "3":
                     Console.Clear();
@@ -39,6 +40,7 @@ namespace DevInDocuments.Data
                     break;
                 default:
                     Console.Clear();
+                    Console.Clear();
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine($"Invalid option, please try again\n");
                     Console.ResetColor();
@@ -47,6 +49,13 @@ namespace DevInDocuments.Data
             }
         }
 
+        public static void RegisteringDocMenu()
+        {
+            Console.WriteLine("Please, what you want to screem? Choose a option:\n" +
+                               "1) Screen TaxBill\n2) Screem Contracts\n3) Screem Licenses\n4) Screen all\n5)Search one by code\n" +
+                               "-1) Back to Main Menu:");
+        }
+        
         public static void ScreemDocMenu()
         {
             Console.WriteLine("Please, what you want to screem? Choose a option:\n" +
@@ -81,21 +90,17 @@ namespace DevInDocuments.Data
                     ScreemDocMenu();
                     break;
                 case "-1":
+                    Console.Clear();
                     MainMenu();
                     break;
                 default:
+                    Console.Clear();
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Invalid option, please try again\n");
                     Console.ResetColor();
                     ScreemDocMenu();
                     break;
             }
-            ///TODO Exception to be a loop
-        }
-
-        public static void EditingDocMenu()
-        {
-
         }
     }
 }

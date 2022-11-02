@@ -29,19 +29,19 @@ namespace DevInDocuments.Entities.Company
                 if (contract is Contracts)
                     contract.ScreemDocument();
             }
+            Console.ResetColor();
         }
 
         public override void ScreemDocument()
         {
             base.ScreemDocument();
-
-            Console.WriteLine("||################################Contracts################################\n"+
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
+            Console.WriteLine("||--------------------------------Contracts--------------------------------\n" +
                               $"||Goals: {this.goals}\n" +
                               $"||Witness 1 name: {this.witnessName[0]}\n" +
                               $"||Witness 2 name: {this.witnessName[1]}\n" +
                               $"||Date for expiration: {this.expirationDate}\n" +
-                              "||#########################################################################\n" +
-                              "||-------------------------------------------------------------------------\n");
+                              "||#########################################################################\n");
         }
     }
 }

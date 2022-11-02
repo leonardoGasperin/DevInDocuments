@@ -31,12 +31,14 @@ namespace DevInDocuments.Entities.Company
                 if(document is TaxInvoice)
                     document.ScreemDocument();
             }
+            Console.ResetColor();
         }
 
         public override void ScreemDocument()
         {
             base.ScreemDocument();
 
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.WriteLine("||###############################TaxInvoice################################\n" +
                               $"||Total value: {this.totalValue:C}\n" +
                               $"||Name of selled product: {this.SelledProductName}\n" +

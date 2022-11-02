@@ -37,6 +37,7 @@ namespace DevInDocuments.Entities.Company
             {
                 document.ScreemDocument();
             }
+            Console.ResetColor();
         }
 
         public virtual void ScreemAllDocumentType() 
@@ -45,6 +46,7 @@ namespace DevInDocuments.Entities.Company
 
         public virtual void ScreemDocument()
         {
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
             Console.WriteLine("||################################DOCUMENT#################################\n" +
                               $"||Employee ID: {this.employeeId}\n" +
                               $"||Document Code: [{this.documentCode}]\n" +

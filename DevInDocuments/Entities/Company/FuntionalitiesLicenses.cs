@@ -27,12 +27,14 @@ namespace DevInDocuments.Entities.Company
                 if(document is FuntionalitiesLicenses)
                     document.ScreemDocument();
             }
+            Console.ResetColor();
         }
 
         public override void ScreemDocument()
         {
             base.ScreemDocument();
 
+            Console.ForegroundColor = ConsoleColor.DarkBlue;
             Console.WriteLine("||################################Licenses#################################\n" +
                               $"||Adress: {this.adress}\n" +
                               $"||operation Area: {this.operationArea}\n" +
