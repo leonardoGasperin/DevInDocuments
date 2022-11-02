@@ -22,7 +22,7 @@ namespace DevInDocuments.Entities.Company
 
         public Contracts() { }
 
-        public override void ScreemAllSpecificDocuments()
+        public override void ScreemAllDocumentType()
         {
             foreach (var contract in GeneralData.documentsList)
             {

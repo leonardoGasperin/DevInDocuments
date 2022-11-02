@@ -1,14 +1,34 @@
-﻿namespace DevInDocuments.Data
+﻿using DevInDocuments.Entities.Company;
+
+namespace DevInDocuments.Data
 {
     internal static class UserStream
     {
-        public static void SearchOneDocument(int code)
+        internal static int RecivieDocCode()
         {
-            foreach(var doc in GeneralData.documentsList)
+            Console.WriteLine("Enter with Document code:");
+            _ = int.TryParse(Console.ReadLine(), out var code);
+            return code;
+        }
+
+        public static DevInDocument SearchOneDocument(int code)
+        {
+            foreach (var doc in GeneralData.documentsList)
             {
                 if (doc.DocumentCode == code)
-                    doc.ScreemDocument();
+                {
+                    return doc;
+                }
             }
+
+            ///TODO
+            ///try figure out how i can refatore it
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("The Document not be found or code must be only interger.\nTry again");
+            Console.ResetColor();
+            
+            return SearchOneDocument(RecivieDocCode());
+
         }
 
         public static void RegisteringDocument()

@@ -1,5 +1,5 @@
-﻿using DevInDocuments.Entities.Person;
-using System.Diagnostics.Contracts;
+﻿using DevInDocuments.Entities.Company;
+using DevInDocuments.Entities.Person;
 
 namespace DevInDocuments.Data
 {
@@ -15,6 +15,7 @@ namespace DevInDocuments.Data
 
         public static void MainMenu()
         {
+            Console.Clear();
             Console.WriteLine("Please, what you want to do? Choose a option:\n" +
                                "1) Register document\n2) Edit document\n3) Screem document\n" +
                                "-1) Exit:");
@@ -28,19 +29,25 @@ namespace DevInDocuments.Data
                     UserStream.EditingDocument();
                     break;
                 case "3":
-                    ScreemDocumentsMenu();
+                    Console.Clear();
+                    ScreemDocMenu();
                     break;
                 case "-1":
-                    Console.WriteLine("Bye bye and have a good rest.");
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("\nBye bye and have a good rest.");
+                    Console.ResetColor();
                     break;
                 default:
-                    Console.WriteLine("Invalid option, please try again\n");
+                    Console.Clear();
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine($"Invalid option, please try again\n");
+                    Console.ResetColor();
                     MainMenu();
                     break;
             }
         }
 
-        private static void ScreemDocumentsMenu()
+        public static void ScreemDocMenu()
         {
             Console.WriteLine("Please, what you want to screem? Choose a option:\n" +
                                "1) Screen TaxBill\n2) Screem Contracts\n3) Screem Licenses\n4) Screen all\n5)Search one by code\n" +
@@ -49,24 +56,46 @@ namespace DevInDocuments.Data
             switch (Console.ReadLine())
             {
                 case "1":
+                    Console.Clear();
+                    new TaxInvoice().ScreemAllDocumentType();
+                    ScreemDocMenu();
                     break;
                 case "2":
+                    Console.Clear();
+                    new Contracts().ScreemAllDocumentType();
+                    ScreemDocMenu();
                     break;
                 case "3":
+                    Console.Clear();
+                    new FuntionalitiesLicenses().ScreemAllDocumentType();
+                    ScreemDocMenu();
                     break;
                 case "4":
+                    Console.Clear();
+                    new Contracts().ScreemAllDocuments();
+                    ScreemDocMenu();
                     break;
                 case "5":
-                    UserStream.SearchOneDocument(int.Parse(Console.ReadLine()));
+                    int docCode = UserStream.RecivieDocCode();
+                    UserStream.SearchOneDocument(docCode).ScreemDocument();
+                    ScreemDocMenu();
                     break;
                 case "-1":
                     MainMenu();
                     break;
                 default:
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Invalid option, please try again\n");
-                    ScreemDocumentsMenu();
+                    Console.ResetColor();
+                    ScreemDocMenu();
                     break;
             }
+            ///TODO Exception to be a loop
+        }
+
+        public static void EditingDocMenu()
+        {
+
         }
     }
 }

@@ -18,7 +18,9 @@ namespace DevInDocuments.Entities.Company
             this.operationArea = operationArea;
         }
 
-        public override void ScreemAllSpecificDocuments()
+        public FuntionalitiesLicenses() { }
+
+        public override void ScreemAllDocumentType()
         {
             foreach (var document in GeneralData.documentsList)
             {

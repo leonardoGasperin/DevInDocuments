@@ -8,9 +8,7 @@ GeneralData.InitializeList();
 var _employee = new Employee("Zezé da Malta", "Jaridm Antonia", "Castelinho de Queijo",
                              new DateTime(1970, 1, 1), new DateTime(2021,03,27));
 
-UserScreem.Welcome(_employee);
 
-/*
 string[] witness = { "Jão", "Aldineya" };
 
 var con2 = new Contracts(_employee.Id, DateTime.Now, "Castelinho de Queijo", "39.921.922/0001-47", 
@@ -29,8 +27,10 @@ con2.RegisterDocument(GeneralData.documentsList, con2);
 license.RegisterDocument(GeneralData.documentsList, license);
 tax.RegisterDocument(GeneralData.documentsList, tax);
 
+
+UserScreem.Welcome(_employee);
+
 //con.ScreemAllSpecificDocuments();
 //tax.ScreemAllSpecificDocuments();
 //license.ScreemAllSpecificDocuments();
 //con.ScreemAllDocuments();
-*/

@@ -31,14 +31,16 @@ namespace DevInDocuments.Entities.Company
             docsList.Add(document);
         }
 
-        public virtual void ScreemAllSpecificDocuments() {}
-
         public void ScreemAllDocuments()
         {
             foreach (DevInDocument document in GeneralData.documentsList)
             {
                 document.ScreemDocument();
             }
+        }
+
+        public virtual void ScreemAllDocumentType() 
+        {
         }
 
         public virtual void ScreemDocument()

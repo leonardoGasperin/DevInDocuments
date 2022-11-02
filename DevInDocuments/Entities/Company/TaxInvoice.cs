@@ -22,7 +22,9 @@ namespace DevInDocuments.Entities.Company
             this.totalTaxValue = totalTaxValue;
         }
 
-        public override void ScreemAllSpecificDocuments()
+        public TaxInvoice() { }
+
+        public override void ScreemAllDocumentType()
         {
             foreach (var document in GeneralData.documentsList)
             {
