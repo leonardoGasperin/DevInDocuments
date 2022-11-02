@@ -5,20 +5,32 @@ using DevInDocuments.Entities.Person;
 
 GeneralData.InitializeList();
 
-var _employee = new Employee("Zezé da Malta", "Jaridm Antonia", "Castelinho de Queijo", new DateTime(1970, 1, 1), new DateTime(2021,03,27));
+var _employee = new Employee("Zezé da Malta", "Jaridm Antonia", "Castelinho de Queijo",
+                             new DateTime(1970, 1, 1), new DateTime(2021,03,27));
 
-UserScreem.Welcome(_employee.Name);
+UserScreem.Welcome(_employee);
 
 /*
-Console.WriteLine("Hello DevInDocuments\n");
-
 string[] witness = { "Jão", "Aldineya" };
 
-var con2 = new Contracts("222 111", witness, new DateTime(1970, 1, 1));
+var con2 = new Contracts(_employee.Id, DateTime.Now, "Castelinho de Queijo", "39.921.922/0001-47", 
+                         "Development of light software", witness, new DateTime(1997, 1, 1));
 
-var con = new Contracts("Work Hard", witness, DateTime.Now);
+var con = new Contracts(_employee.Id, DateTime.Now, "Maqui Donauldes", "37.987.512/0001-35",
+                        "Work Hard", witness, DateTime.Now);
+
+var license = new FuntionalitiesLicenses(_employee.Id, DateTime.Now, "Technologic Institute of University of Helsinki", "00.789.734/0001-08", "Av. Da Malta", Operation.Technology);
+
+var tax = new TaxInvoice(_employee.Id, DateTime.Now, "Castelinho de Queijo", "39.921.922/0001-47", 1936.51m, "PC", TaxType.IPI, 0.25f);
 
 
 con.RegisterDocument(GeneralData.documentsList, con);
 con2.RegisterDocument(GeneralData.documentsList, con2);
-con2.ScreemAllDocuments();*/
+license.RegisterDocument(GeneralData.documentsList, license);
+tax.RegisterDocument(GeneralData.documentsList, tax);
+
+//con.ScreemAllSpecificDocuments();
+//tax.ScreemAllSpecificDocuments();
+//license.ScreemAllSpecificDocuments();
+//con.ScreemAllDocuments();
+*/

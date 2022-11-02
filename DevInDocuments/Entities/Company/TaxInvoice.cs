@@ -1,4 +1,6 @@
-﻿namespace DevInDocuments.Entities.Company
+﻿using DevInDocuments.Data;
+
+namespace DevInDocuments.Entities.Company
 {
     internal class TaxInvoice : DevInDocument
     {
@@ -10,7 +12,36 @@
         private TaxType taxType;
         private float totalTaxValue;
 
-        ///TODO
-        ///A Constructor or Props
+        public TaxInvoice(int employeeId, DateTime systemDate, string establishmentName, string cnpj,
+                          decimal totalValue, string SelledProductName, TaxType taxType, float totalTaxValue) : 
+                          base(employeeId, systemDate, establishmentName, cnpj)
+        {
+            this.totalValue = totalValue;
+            this.SelledProductName = SelledProductName;
+            this.taxType = taxType;
+            this.totalTaxValue = totalTaxValue;
+        }
+
+        public override void ScreemAllSpecificDocuments()
+        {
+            foreach (var document in GeneralData.documentsList)
+            {
+                if(document is TaxInvoice)
+                    document.ScreemDocument();
+            }
+        }
+
+        public override void ScreemDocument()
+        {
+            base.ScreemDocument();
+
+            Console.WriteLine("||###############################TaxInvoice################################\n" +
+                              $"||Total value: {this.totalValue:C}\n" +
+                              $"||Name of selled product: {this.SelledProductName}\n" +
+                              $"||Tax type: {this.taxType}\n" +
+                              $"||Total tax value: {this.totalTaxValue}%\n" +
+                              "||#########################################################################\n" +
+                              "||-------------------------------------------------------------------------\n");
+        }
     }
 }
