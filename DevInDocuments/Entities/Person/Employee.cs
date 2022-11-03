@@ -4,10 +4,10 @@
     {
         private int id;
         private string name;
-        private string adress;
-        private string afiliation;
-        private DateTime bornDate;
-        private DateTime admissionDate;
+        private readonly string adress;
+        private readonly string afiliation;
+        private readonly DateTime bornDate;
+        private readonly DateTime admissionDate;
 
         public string Name { get { return name; } }
         public int Id { get { return id; } }
@@ -20,11 +20,6 @@
             this.afiliation = afiliation;
             this.bornDate = bornDate;
             this.admissionDate = admissionDate;
-        }
-
-        public void RegisterEmployee(List<Employee> employeeList, Employee employee)
-        {
-            employeeList.Add(employee);
         }
     }
 }

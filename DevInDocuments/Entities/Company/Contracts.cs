@@ -11,9 +11,9 @@ namespace DevInDocuments.Entities.Company
         private string[] witnessName;
         private DateTime expirationDate;
 
-        public Contracts(int employeeId, DateTime systemDate, string establishmentName, string cnpj,
+        public Contracts(int employeeId, string establishmentName, string cnpj,
                          string goals, string[] witnessName, DateTime expirationDate) : 
-                         base(employeeId, systemDate, establishmentName, cnpj)
+                         base(employeeId, establishmentName, cnpj)
         {
             this.goals = goals;
             this.witnessName = witnessName;
@@ -29,7 +29,15 @@ namespace DevInDocuments.Entities.Company
                 if (contract is Contracts)
                     contract.ScreemDocument();
             }
-            Console.ResetColor();
+        }
+
+        public override void ChangeItensDocument(Contracts contractsEditValues)
+        {
+            base.ChangeItensDocument(contractsEditValues);
+
+            this.goals = contractsEditValues.goals;
+            this.witnessName = contractsEditValues.witnessName;
+            this.expirationDate = contractsEditValues.expirationDate;
         }
 
         public override void ScreemDocument()
@@ -42,6 +50,7 @@ namespace DevInDocuments.Entities.Company
                               $"||Witness 2 name: {this.witnessName[1]}\n" +
                               $"||Date for expiration: {this.expirationDate}\n" +
                               "||#########################################################################\n");
+            Console.ResetColor();
         }
     }
 }

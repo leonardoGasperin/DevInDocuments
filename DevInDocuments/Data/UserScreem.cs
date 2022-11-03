@@ -23,11 +23,12 @@ namespace DevInDocuments.Data
             {
                 case "1":
                     Console.Clear();
-                    UserStream.RegisteringDocument();
+                    RegisteringDocMenu();
                     break;
                 case "2":
                     Console.Clear();
-                    UserStream.SearchOneDocument(UserStream.RecivieDocCode());
+                    UserStream.EditingDocument(_employee.Id);
+                    MainMenu();
                     break;
                 case "3":
                     Console.Clear();
@@ -51,9 +52,38 @@ namespace DevInDocuments.Data
 
         public static void RegisteringDocMenu()
         {
-            Console.WriteLine("Please, what you want to screem? Choose a option:\n" +
-                               "1) Screen TaxBill\n2) Screem Contracts\n3) Screem Licenses\n4) Screen all\n5)Search one by code\n" +
-                               "-1) Back to Main Menu:");
+            Console.WriteLine("What type of Document you want to register? Choose a option:\n" +
+                               "1) Tax Invoice\n2) Contracts\n3) Licenses\n-1) Back to Main Menu:");
+
+            switch (Console.ReadLine())
+            {
+                case "1":
+                    Console.Clear();
+                    UserStream.RegisteringDocument(new TaxInvoice(), _employee.Id);
+                    RegisteringDocMenu();
+                    break;
+                case "2":
+                    Console.Clear();
+                    UserStream.RegisteringDocument(new Contracts(), _employee.Id);
+                    RegisteringDocMenu();
+                    break;
+                case "3":
+                    Console.Clear();
+                    UserStream.RegisteringDocument(new FuntionalitiesLicenses(), _employee.Id);
+                    RegisteringDocMenu();
+                    break;
+                case "-1":
+                    Console.Clear();
+                    MainMenu();
+                    break;
+                default:
+                    Console.Clear();
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Invalid option, please try again\n");
+                    Console.ResetColor();
+                    RegisteringDocMenu();
+                    break;
+            }
         }
         
         public static void ScreemDocMenu()
@@ -85,6 +115,7 @@ namespace DevInDocuments.Data
                     ScreemDocMenu();
                     break;
                 case "5":
+                    Console.Clear();
                     int docCode = UserStream.RecivieDocCode();
                     UserStream.SearchOneDocument(docCode).ScreemDocument();
                     ScreemDocMenu();

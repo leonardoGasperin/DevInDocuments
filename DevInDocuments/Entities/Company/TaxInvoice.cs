@@ -1,4 +1,5 @@
 ﻿using DevInDocuments.Data;
+using DevInDocuments.Features;
 
 namespace DevInDocuments.Entities.Company
 {
@@ -12,9 +13,9 @@ namespace DevInDocuments.Entities.Company
         private TaxType taxType;
         private float totalTaxValue;
 
-        public TaxInvoice(int employeeId, DateTime systemDate, string establishmentName, string cnpj,
+        public TaxInvoice(int employeeId, string establishmentName, string cnpj,
                           decimal totalValue, string SelledProductName, TaxType taxType, float totalTaxValue) : 
-                          base(employeeId, systemDate, establishmentName, cnpj)
+                          base(employeeId, establishmentName, cnpj)
         {
             this.totalValue = totalValue;
             this.SelledProductName = SelledProductName;
@@ -24,6 +25,16 @@ namespace DevInDocuments.Entities.Company
 
         public TaxInvoice() { }
 
+        public override void ChangeItensDocument(TaxInvoice taxEditValues)
+        {
+            base.ChangeItensDocument(taxEditValues);
+
+            this.totalValue = taxEditValues.totalValue;
+            this.SelledProductName = taxEditValues.SelledProductName;
+            this.taxType = taxEditValues.taxType;
+            this.totalTaxValue = taxEditValues.totalTaxValue;
+        }
+
         public override void ScreemAllDocumentType()
         {
             foreach (var document in GeneralData.documentsList)
@@ -31,7 +42,6 @@ namespace DevInDocuments.Entities.Company
                 if(document is TaxInvoice)
                     document.ScreemDocument();
             }
-            Console.ResetColor();
         }
 
         public override void ScreemDocument()
@@ -39,13 +49,13 @@ namespace DevInDocuments.Entities.Company
             base.ScreemDocument();
 
             Console.ForegroundColor = ConsoleColor.DarkYellow;
-            Console.WriteLine("||###############################TaxInvoice################################\n" +
+            Console.WriteLine("||--------------------------------TaxInvoice--------------------------------\n" +
                               $"||Total value: {this.totalValue:C}\n" +
                               $"||Name of selled product: {this.SelledProductName}\n" +
                               $"||Tax type: {this.taxType}\n" +
                               $"||Total tax value: {this.totalTaxValue}%\n" +
-                              "||#########################################################################\n" +
-                              "||-------------------------------------------------------------------------\n");
+                              "||#########################################################################\n");
+            Console.ResetColor();
         }
     }
 }

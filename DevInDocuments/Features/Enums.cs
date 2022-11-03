@@ -1,23 +1,26 @@
-﻿public enum TaxType
+﻿namespace DevInDocuments.Features
 {
-    ICMS,
-    IPI,
-    IOF,
-    Other
-}
+    public enum TaxType
+    {
+        ICMS,
+        IPI,
+        IOF,
+        Other
+    }
 
-public enum Operation
-{
-    Industry,
-    Agricultural,
-    Metallurgical,
-    Technology,
-    Other
-}
+    public enum Operation
+    {
+        Industry,
+        Agricultural,
+        Metallurgical,
+        Technology,
+        Other
+    }
 
-public enum DocumentStatus
-{
-    Active,
-    Processing,
-    Suspended
+    public enum DocumentStatus
+    {
+        Active,
+        Processing,
+        Suspended
+    }
 }
