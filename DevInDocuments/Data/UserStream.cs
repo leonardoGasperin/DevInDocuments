@@ -36,11 +36,9 @@ namespace DevInDocuments.Data
 
         public static void RegisteringDocument(DevInDocument docCreation)
         {
-            Console.WriteLine(docCreation.GetType().Name);
             switch (docCreation.GetType().Name)
             {
                 case "TaxInvoice":
-                    Console.WriteLine("YYYYY");
                     docCreation = UserScreem.RecivieingTaxValues();
                     docCreation.RegisterDocument(GeneralData.documentsList, docCreation);
                     Console.Clear();
