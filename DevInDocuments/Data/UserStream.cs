@@ -37,11 +37,11 @@ namespace DevInDocuments.Data
             }
             catch
             {
+                Console.Clear();
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("The Document recivie some value in valid format.\nOperation canceled");
+                Console.WriteLine("The Document recivie some value with invalid format.\nOperation canceled");
                 Console.ResetColor();
             }
-            Console.Clear();
         }
 
         public static void EditingDocument()
