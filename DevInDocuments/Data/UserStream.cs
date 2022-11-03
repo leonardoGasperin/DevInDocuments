@@ -36,22 +36,24 @@ namespace DevInDocuments.Data
 
         public static void RegisteringDocument(DevInDocument docCreation)
         {
-            switch (docCreation)
+            Console.WriteLine(docCreation.GetType().Name);
+            switch (docCreation.GetType().Name)
             {
-                case TaxInvoice:
+                case "TaxInvoice":
+                    Console.WriteLine("YYYYY");
                     docCreation = UserScreem.RecivieingTaxValues();
                     docCreation.RegisterDocument(GeneralData.documentsList, docCreation);
                     Console.Clear();
                     docCreation.ScreemDocument();
                     break;
-                case Contracts:
-                    docCreation = UserScreem.RecivieingTaxValues();
+                case "Contracts":
+                    docCreation = UserScreem.RecivieingContractsValues();
                     docCreation.RegisterDocument(GeneralData.documentsList, docCreation);
                     Console.Clear();
                     docCreation.ScreemDocument();
                     break;
-                case FuntionalitiesLicenses:
-                    docCreation = UserScreem.RecivieingTaxValues();
+                case "FuntionalitiesLicenses":
+                    docCreation = UserScreem.RecivieingLicensesValues();
                     docCreation.RegisterDocument(GeneralData.documentsList, docCreation);
                     Console.Clear();
                     docCreation.ScreemDocument();
@@ -78,6 +80,65 @@ namespace DevInDocuments.Data
 
             Console.Clear();
             docEdit.ScreemDocument();
+        }
+
+        public static TaxType ChoosenTaxType(string value)
+        {
+            TaxType _taxType = TaxType.Other;
+
+            switch (value)
+            {
+                case "0":
+                    _taxType = TaxType.ICMS;
+                    return _taxType;
+                case "1":
+                    _taxType = TaxType.IPI;
+                    return _taxType;
+                case "2":
+                    _taxType = TaxType.IOF;
+                    return _taxType;
+                case "3":
+                    break;
+                default:
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Invalid option, please try again\n");
+                    Console.ResetColor();
+                    _taxType = ChoosenTaxType(Console.ReadLine());
+                    break;
+            }
+
+            return _taxType;
+        }
+
+        public static Operation ChoosenOperationType(string value)
+        {
+            Operation _operation = Operation.Other;
+
+            switch (value)
+            {
+                case "0":
+                    _operation = Operation.Industry;
+                    return _operation;
+                case "1":
+                    _operation = Operation.Agricultural;
+                    return _operation;
+                case "2":
+                    _operation = Operation.Metallurgical;
+                    return _operation;
+                case "3":
+                    _operation = Operation.Technology;
+                    return _operation;
+                case "4":
+                    break;
+                default:
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Invalid option, please try again\n");
+                    Console.ResetColor();
+                    _operation =  ChoosenOperationType(Console.ReadLine());
+                    break;
+            }
+
+            return _operation;
         }
     }
 }

@@ -146,12 +146,15 @@ namespace DevInDocuments.Data
             Console.WriteLine("Enter with selled product name:");
             string newSelledProductName = Console.ReadLine();
             Console.WriteLine("Enter with tax type:");
-            string newTaxType = Console.ReadLine();
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("0) ICMS\n1) IPI\n2) IOF\n3) Other");
+            Console.ResetColor();
+            TaxType newTaxType = UserStream.ChoosenTaxType(Console.ReadLine());
             Console.WriteLine("Enter with total tax value percentage:");
             string newTotalTaxValue = Console.ReadLine();
 
             return new TaxInvoice(_employee.Id, newEstablishmentName, newCnpj, decimal.Parse(newTotalValue),
-                                  newSelledProductName, TaxType.Other, decimal.Parse(newTotalTaxValue));
+                                  newSelledProductName, newTaxType, decimal.Parse(newTotalTaxValue));
         }
 
         public static Contracts RecivieingContractsValues()
@@ -188,9 +191,14 @@ namespace DevInDocuments.Data
             Console.WriteLine("Enter with the adress:");
             string newAdress = Console.ReadLine();
             Console.WriteLine("Enter with the operation:");
-            string newOperation = Console.ReadLine();
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("0) Industry\n1) Agricultural\n2) Metallurgical\n3) Technology\n4) Other");
+            Console.ResetColor();
+            Operation newOperation = UserStream.ChoosenOperationType(Console.ReadLine());
 
-            return new FuntionalitiesLicenses(_employee.Id, newEstablishmentName, newCnpj, newAdress, Operation.Other);
+            return new FuntionalitiesLicenses(_employee.Id, newEstablishmentName, newCnpj, newAdress, newOperation);
         }
+
+        
     }
 }
