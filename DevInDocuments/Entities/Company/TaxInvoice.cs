@@ -11,10 +11,10 @@ namespace DevInDocuments.Entities.Company
         private decimal totalValue;
         private string SelledProductName;
         private TaxType taxType;
-        private float totalTaxValue;
+        private decimal totalTaxValue;
 
         public TaxInvoice(int employeeId, string establishmentName, string cnpj,
-                          decimal totalValue, string SelledProductName, TaxType taxType, float totalTaxValue) : 
+                          decimal totalValue, string SelledProductName, TaxType taxType, decimal totalTaxValue) : 
                           base(employeeId, establishmentName, cnpj)
         {
             this.totalValue = totalValue;

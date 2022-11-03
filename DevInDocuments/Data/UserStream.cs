@@ -86,7 +86,7 @@ namespace DevInDocuments.Data
             string newTotalTaxValue = Console.ReadLine();
 
             return new TaxInvoice(employeeId, newEstablishmentName, newCnpj, decimal.Parse(newTotalValue),
-                                  newSelledProductName, TaxType.Other, float.Parse(newTotalTaxValue));
+                                  newSelledProductName, TaxType.Other, decimal.Parse(newTotalTaxValue));
         }
 
         public static Contracts RecivieingContractsValues(int employeeId)
