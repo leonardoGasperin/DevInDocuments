@@ -1,5 +1,6 @@
 ﻿using DevInDocuments.Entities.Company;
 using DevInDocuments.Entities.Person;
+using DevInDocuments.Features;
 
 namespace DevInDocuments.Data
 {
@@ -27,7 +28,7 @@ namespace DevInDocuments.Data
                     break;
                 case "2":
                     Console.Clear();
-                    UserStream.EditingDocument(_employee.Id);
+                    UserStream.EditingDocument();
                     MainMenu();
                     break;
                 case "3":
@@ -59,17 +60,17 @@ namespace DevInDocuments.Data
             {
                 case "1":
                     Console.Clear();
-                    UserStream.RegisteringDocument(new TaxInvoice(), _employee.Id);
+                    UserStream.RegisteringDocument(new TaxInvoice());
                     RegisteringDocMenu();
                     break;
                 case "2":
                     Console.Clear();
-                    UserStream.RegisteringDocument(new Contracts(), _employee.Id);
+                    UserStream.RegisteringDocument(new Contracts());
                     RegisteringDocMenu();
                     break;
                 case "3":
                     Console.Clear();
-                    UserStream.RegisteringDocument(new FuntionalitiesLicenses(), _employee.Id);
+                    UserStream.RegisteringDocument(new FuntionalitiesLicenses());
                     RegisteringDocMenu();
                     break;
                 case "-1":
@@ -132,6 +133,64 @@ namespace DevInDocuments.Data
                     ScreemDocMenu();
                     break;
             }
+        }
+
+        public static TaxInvoice RecivieingTaxValues()
+        {
+            Console.WriteLine("Enter with establishment name:");
+            string newEstablishmentName = Console.ReadLine();
+            Console.WriteLine("Enter with CNPJ:");
+            string newCnpj = Console.ReadLine();
+            Console.WriteLine("Enter with total value price:");
+            string newTotalValue = Console.ReadLine();
+            Console.WriteLine("Enter with selled product name:");
+            string newSelledProductName = Console.ReadLine();
+            Console.WriteLine("Enter with tax type:");
+            string newTaxType = Console.ReadLine();
+            Console.WriteLine("Enter with total tax value percentage:");
+            string newTotalTaxValue = Console.ReadLine();
+
+            return new TaxInvoice(_employee.Id, newEstablishmentName, newCnpj, decimal.Parse(newTotalValue),
+                                  newSelledProductName, TaxType.Other, decimal.Parse(newTotalTaxValue));
+        }
+
+        public static Contracts RecivieingContractsValues()
+        {
+            Console.WriteLine("Enter with establishment name:");
+            string newEstablishmentName = Console.ReadLine();
+            Console.WriteLine("Enter with CNPJ:");
+            string newCnpj = Console.ReadLine();
+            Console.WriteLine("Enter with the goals:");
+            string newGoals = Console.ReadLine();
+            Console.WriteLine("Enter with witnesses names:");
+            string[] newWitnessName = { "", "" };
+            Console.WriteLine("witnesses 1 names:");
+            newWitnessName[0] = Console.ReadLine();
+            Console.WriteLine("witnesses 2 names:");
+            newWitnessName[1] = Console.ReadLine();
+            Console.WriteLine("Enter with an expiration date:");
+            Console.WriteLine("Enter with year:");
+            string year = Console.ReadLine();
+            Console.WriteLine("Enter with month:");
+            string month = Console.ReadLine();
+            Console.WriteLine("Enter with date:");
+            string day = Console.ReadLine();
+
+            return new Contracts(_employee.Id, newEstablishmentName, newCnpj, newGoals, newWitnessName, new DateTime(int.Parse(year), int.Parse(month), int.Parse(day)));
+        }
+
+        public static FuntionalitiesLicenses RecivieingLicensesValues()
+        {
+            Console.WriteLine("Enter with new establishment name:");
+            string newEstablishmentName = Console.ReadLine();
+            Console.WriteLine("Enter with new CNPJ:");
+            string newCnpj = Console.ReadLine();
+            Console.WriteLine("Enter with the adress:");
+            string newAdress = Console.ReadLine();
+            Console.WriteLine("Enter with the operation:");
+            string newOperation = Console.ReadLine();
+
+            return new FuntionalitiesLicenses(_employee.Id, newEstablishmentName, newCnpj, newAdress, Operation.Other);
         }
     }
 }
