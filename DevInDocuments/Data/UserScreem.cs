@@ -16,6 +16,10 @@ namespace DevInDocuments.Data
 
         public static void MainMenu()
         {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine($"We have {GeneralData.documentsList.Count} Documents in our Bank System");
+            Console.ResetColor();
+
             Console.WriteLine("Please, what you want to do? Choose a option:\n" +
                                "1) Register document\n2) Edit document itens\n3) Edit document status\n4) Screem document\n" +
                                "-1) Exit:");

@@ -1,7 +1,5 @@
 ﻿using DevInDocuments.Entities.Company;
-using DevInDocuments.Entities.Person;
 using DevInDocuments.Features;
-using System.Reflection;
 
 namespace DevInDocuments.Data
 {
@@ -29,7 +27,9 @@ namespace DevInDocuments.Data
             {
                 if (doc.DocumentCode == code)
                 {
-                    Console.WriteLine("Document Found");
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("Document Found!\n");
+                    Console.ResetColor();
                     return doc;
                 }
             }
