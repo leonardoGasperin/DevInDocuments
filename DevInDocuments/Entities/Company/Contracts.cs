@@ -4,9 +4,6 @@ namespace DevInDocuments.Entities.Company
 {
     internal class Contracts : DevInDocument
     {
-        ///TODO
-        /// Decide the acess nivel for atributes
-
         private string goals;
         private string[] witnessName;
         private DateTime expirationDate;

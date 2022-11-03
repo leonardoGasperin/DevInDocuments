@@ -5,9 +5,6 @@ namespace DevInDocuments.Entities.Company
 {
     internal class FuntionalitiesLicenses : DevInDocument
     {
-        ///TODO
-        /// Decide the acess nivel for atributes
-
         private string adress;
         private Operation operationArea;
 
@@ -25,7 +22,7 @@ namespace DevInDocuments.Entities.Company
         {
             base.ChangeItensDocument(licenseEditValues);
 
-            this.adress = licenseEditValues.adress;
+            this.adress = licenseEditValues.adress == "" ? this.adress : licenseEditValues.adress;
             this.operationArea = licenseEditValues.operationArea;
         }
 

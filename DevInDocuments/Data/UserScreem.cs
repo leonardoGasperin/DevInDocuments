@@ -17,7 +17,7 @@ namespace DevInDocuments.Data
         public static void MainMenu()
         {
             Console.WriteLine("Please, what you want to do? Choose a option:\n" +
-                               "1) Register document\n2) Edit document\n3) Screem document\n" +
+                               "1) Register document\n2) Edit document itens\n3) Edit document status\n4) Screem document\n" +
                                "-1) Exit:");
 
             switch (Console.ReadLine())
@@ -29,9 +29,12 @@ namespace DevInDocuments.Data
                 case "2":
                     Console.Clear();
                     UserStream.EditingDocument();
-                    MainMenu();
                     break;
                 case "3":
+                    Console.Clear();
+                    UserStream.EditingDocumentStatus();
+                    break;
+                case "4":
                     Console.Clear();
                     ScreemDocMenu();
                     break;
@@ -61,17 +64,17 @@ namespace DevInDocuments.Data
                 case "1":
                     Console.Clear();
                     UserStream.RegisteringDocument(new TaxInvoice());
-                    RegisteringDocMenu();
+                    MainMenu();
                     break;
                 case "2":
                     Console.Clear();
                     UserStream.RegisteringDocument(new Contracts());
-                    RegisteringDocMenu();
+                    MainMenu();
                     break;
                 case "3":
                     Console.Clear();
                     UserStream.RegisteringDocument(new FuntionalitiesLicenses());
-                    RegisteringDocMenu();
+                    MainMenu();
                     break;
                 case "-1":
                     Console.Clear();
@@ -90,7 +93,7 @@ namespace DevInDocuments.Data
         public static void ScreemDocMenu()
         {
             Console.WriteLine("Please, what you want to screem? Choose a option:\n" +
-                               "1) Screen TaxBill\n2) Screem Contracts\n3) Screem Licenses\n4) Screen all\n5)Search one by code\n" +
+                               "1) Screen TaxBill\n2) Screem Contracts\n3) Screem Licenses\n4) By document status\n5) Screen all\n6)Search one by code\n" +
                                "-1) Back to Main Menu:");
 
             switch (Console.ReadLine())
@@ -98,28 +101,43 @@ namespace DevInDocuments.Data
                 case "1":
                     Console.Clear();
                     new TaxInvoice().ScreemAllDocumentType();
-                    ScreemDocMenu();
+                    MainMenu();
                     break;
                 case "2":
                     Console.Clear();
                     new Contracts().ScreemAllDocumentType();
-                    ScreemDocMenu();
+                    MainMenu();
                     break;
                 case "3":
                     Console.Clear();
                     new FuntionalitiesLicenses().ScreemAllDocumentType();
-                    ScreemDocMenu();
+                    MainMenu();
                     break;
                 case "4":
                     Console.Clear();
-                    new Contracts().ScreemAllDocuments();
-                    ScreemDocMenu();
+                    GeneralData.SearchByStatus(ChooseStatus());
+                    MainMenu();
                     break;
                 case "5":
                     Console.Clear();
-                    int docCode = UserStream.RecivieDocCode();
-                    UserStream.SearchOneDocument(docCode).ScreemDocument();
-                    ScreemDocMenu();
+                    new Contracts().ScreemAllDocuments();
+                    MainMenu();
+                    break;
+                case "6":
+                    Console.Clear();
+                    try
+                    {
+                        int docCode = UserStream.RecivieDocCode();
+                        GeneralData.SearchOneDocument(docCode).ScreemDocument();
+                    }
+                    catch
+                    {
+                        Console.Clear();
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("The Document not be found or code is not in valid format.\n");
+                        Console.ResetColor();
+                    }
+                    MainMenu();
                     break;
                 case "-1":
                     Console.Clear();
@@ -153,6 +171,7 @@ namespace DevInDocuments.Data
             Console.WriteLine("Enter with total tax value percentage:");
             string newTotalTaxValue = Console.ReadLine();
 
+
             return new TaxInvoice(_employee.Id, newEstablishmentName, newCnpj, decimal.Parse(newTotalValue),
                                   newSelledProductName, newTaxType, decimal.Parse(newTotalTaxValue));
         }
@@ -179,7 +198,8 @@ namespace DevInDocuments.Data
             Console.WriteLine("Enter with date:");
             string day = Console.ReadLine();
 
-            return new Contracts(_employee.Id, newEstablishmentName, newCnpj, newGoals, newWitnessName, new DateTime(int.Parse(year), int.Parse(month), int.Parse(day)));
+            return new Contracts(_employee.Id, newEstablishmentName, newCnpj, newGoals, newWitnessName, 
+                                 new DateTime(int.Parse(year), int.Parse(month), int.Parse(day)));
         }
 
         public static FuntionalitiesLicenses RecivieingLicensesValues()
@@ -199,6 +219,16 @@ namespace DevInDocuments.Data
             return new FuntionalitiesLicenses(_employee.Id, newEstablishmentName, newCnpj, newAdress, newOperation);
         }
 
-        
+        public static DocumentStatus ChooseStatus()
+        {
+
+            Console.WriteLine("Enter with Status type:");
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("0) Active\n1) Processing\n2) Suspended");
+            Console.ResetColor();
+            DocumentStatus status = UserStream.ChoosenStatusType(Console.ReadLine());
+
+            return status;
+        }
     }
 }

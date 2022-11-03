@@ -21,6 +21,7 @@
     {
         Active,
         Processing,
-        Suspended
+        Suspended,
+        InvalidOption
     }
 }

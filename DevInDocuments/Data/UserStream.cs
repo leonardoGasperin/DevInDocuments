@@ -12,72 +12,106 @@ namespace DevInDocuments.Data
             return code;
         }
 
-        public static DevInDocument SearchOneDocument(int code)
-        {
-            foreach (var doc in GeneralData.documentsList)
-            {
-                if (doc.DocumentCode == code)
-                {
-                    return doc;
-                }
-            }
-
-            return DocNotFound();
-        }
-
-        public static DevInDocument DocNotFound()
-        {
-
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("The Document not be found or code must be only interger.\nTry again");
-            Console.ResetColor();
-            return SearchOneDocument(RecivieDocCode());
-        }
-
         public static void RegisteringDocument(DevInDocument docCreation)
         {
-            switch (docCreation.GetType().Name)
+            try
             {
-                case "TaxInvoice":
-                    docCreation = UserScreem.RecivieingTaxValues();
+                switch (docCreation.GetType().Name)
+                {
+                    case "TaxInvoice":
+                        docCreation = UserScreem.RecivieingTaxValues();
+                        break;
+                    case "Contracts":
+                        docCreation = UserScreem.RecivieingContractsValues();
+                        break;
+                    case "FuntionalitiesLicenses":
+                        docCreation = UserScreem.RecivieingLicensesValues();
+                        break;
+                }
+
+                Console.Clear();
+                if (CheckDocumentToConfirm(docCreation) == "1")
+                {
                     docCreation.RegisterDocument(GeneralData.documentsList, docCreation);
-                    Console.Clear();
-                    docCreation.ScreemDocument();
-                    break;
-                case "Contracts":
-                    docCreation = UserScreem.RecivieingContractsValues();
-                    docCreation.RegisterDocument(GeneralData.documentsList, docCreation);
-                    Console.Clear();
-                    docCreation.ScreemDocument();
-                    break;
-                case "FuntionalitiesLicenses":
-                    docCreation = UserScreem.RecivieingLicensesValues();
-                    docCreation.RegisterDocument(GeneralData.documentsList, docCreation);
-                    Console.Clear();
-                    docCreation.ScreemDocument();
-                    break;
+                }
             }
+            catch
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("The Document recivie some value in valid format.\nOperation canceled");
+                Console.ResetColor();
+            }
+            Console.Clear();
         }
 
         public static void EditingDocument()
         {
-            var docEdit = SearchOneDocument(RecivieDocCode());
-
-            switch (docEdit)
+            try
             {
-                case TaxInvoice:
-                    docEdit.ChangeItensDocument(UserScreem.RecivieingTaxValues());
-                    break;
-                case Contracts:
-                    docEdit.ChangeItensDocument(UserScreem.RecivieingContractsValues());
-                    break;
-                case FuntionalitiesLicenses:
-                    docEdit.ChangeItensDocument(UserScreem.RecivieingLicensesValues());
-                    break;
-            }
+                var docEdit = GeneralData.SearchOneDocument(RecivieDocCode());
 
+                switch (docEdit)
+                {
+                    case TaxInvoice:
+                        var newTax = UserScreem.RecivieingTaxValues();
+                        if (CheckDocumentToConfirm(newTax) == "1")
+                            docEdit.ChangeItensDocument(newTax);
+                        break;
+                    case Contracts:
+                        var newContract = UserScreem.RecivieingContractsValues();
+                        if (CheckDocumentToConfirm(newContract) == "1")
+                            docEdit.ChangeItensDocument(newContract);
+                        break;
+                    case FuntionalitiesLicenses:
+                        var newLicence = UserScreem.RecivieingLicensesValues();
+                        if (CheckDocumentToConfirm(newLicence) == "1")
+                            docEdit.ChangeItensDocument(newLicence);
+                        break;
+                }
+
+                Console.Clear();
+                UserScreem.MainMenu();
+            }
+            catch
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("The Document not be found or some value is not in valid format.\nOperation canceled");
+                Console.ResetColor();
+                UserScreem.MainMenu();
+            }
+        }
+
+        public static void EditingDocumentStatus()
+        {
+            try
+            {
+                var docEdit = GeneralData.SearchOneDocument(RecivieDocCode());
+                DocumentStatus status = UserScreem.ChooseStatus();
+                docEdit.ChangeDocumentStatus(status);
+                UserScreem.MainMenu();
+            }
+            catch
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("The Document not be found or code is not in valid format.");
+                Console.ResetColor();
+                UserScreem.MainMenu();
+            }
+        }
+
+        private static string CheckDocumentToConfirm(DevInDocument docCreation)
+        {
             Console.Clear();
-            docEdit.ScreemDocument();
+            docCreation.ScreemDocument();
+
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("Check if document is valid to confirm:\n" +
+                              "1) Save");
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("2) tipe anything to cancel");
+            Console.ResetColor();
+
+            return Console.ReadLine();
         }
 
         public static TaxType ChoosenTaxType(string value)
@@ -99,7 +133,7 @@ namespace DevInDocuments.Data
                     break;
                 default:
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Invalid option, please try again\n");
+                    Console.WriteLine("Invalid option\n");
                     Console.ResetColor();
                     _taxType = ChoosenTaxType(Console.ReadLine());
                     break;
@@ -130,13 +164,34 @@ namespace DevInDocuments.Data
                     break;
                 default:
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Invalid option, please try again\n");
+                    Console.WriteLine("Invalid option\n");
                     Console.ResetColor();
                     _operation =  ChoosenOperationType(Console.ReadLine());
                     break;
             }
 
             return _operation;
+        }
+
+        public static DocumentStatus ChoosenStatusType(string value)
+        {
+            DocumentStatus status = DocumentStatus.InvalidOption;
+            switch (value)
+            {
+                case "0":
+                    return DocumentStatus.Active;
+                case "1":
+                    return DocumentStatus.Processing;
+                case "2":
+                    return DocumentStatus.Suspended;
+                default:
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Invalid option\n");
+                    Console.ResetColor();
+                    break;
+            }
+
+            return status;
         }
     }
 }
