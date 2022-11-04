@@ -70,6 +70,7 @@ namespace DevInDocuments.Data
             {
                 ScreemMessage.ClearRedAlert(0);
             }
+            Console.Clear();
             UserScreem.MainMenu();
         }
 
@@ -77,7 +78,6 @@ namespace DevInDocuments.Data
         {
             try
             {
-                Console.Clear();
                 var docEdit = GeneralData.SearchOneDocument(RecivieDocCode());
                 DocumentStatus status = UserScreem.ChooseStatus();
                 docEdit.ChangeDocumentStatus(status);
@@ -86,6 +86,7 @@ namespace DevInDocuments.Data
             {
                 ScreemMessage.ClearRedAlert(1);
             }
+            Console.Clear();
             UserScreem.MainMenu();
         }
 

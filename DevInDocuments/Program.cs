@@ -3,6 +3,6 @@ using DevInDocuments.Entities.Person;
 
 GeneralData.InitializeList();
 
-var _employee = new Employee("Zezé da Mata", "Jaridm Antonia", "Castelinho de Queijo",
-                             new DateTime(1970, 1, 1), new DateTime(2021,03,27));
+var _employee = new Employee("Leonardo Vinicius De Gasperin", "Jaridm Porto Belo Nº3000", "EDP technologic Squad",
+                             new DateTime(1992, 6, 26), new DateTime(2022,12,24));
 UserScreem.Welcome(_employee);

@@ -106,7 +106,6 @@ namespace DevInDocuments.Data
                 case "6":
                     try
                     {
-                        Console.Clear();
                         int docCode = UserStream.RecivieDocCode();
                         GeneralData.SearchOneDocument(docCode).ScreemDocument();
                     }
