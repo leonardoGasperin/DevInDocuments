@@ -77,13 +77,14 @@ namespace DevInDocuments.Data
         {
             try
             {
+                Console.Clear();
                 var docEdit = GeneralData.SearchOneDocument(RecivieDocCode());
                 DocumentStatus status = UserScreem.ChooseStatus();
                 docEdit.ChangeDocumentStatus(status);
             }
             catch
             {
-                ScreemMessage.ClearRedAlert(0);
+                ScreemMessage.ClearRedAlert(1);
             }
             UserScreem.MainMenu();
         }
@@ -152,7 +153,7 @@ namespace DevInDocuments.Data
 
         public static DocumentStatus ChoosenStatusType(string value)
         {
-            DocumentStatus status = DocumentStatus.InvalidOption;
+            DocumentStatus status;
             switch (value)
             {
                 case "0":
@@ -163,6 +164,7 @@ namespace DevInDocuments.Data
                     return DocumentStatus.Suspended;
                 default:
                     ScreemMessage.RedAlert(0);
+                    status = ChoosenStatusType(Console.ReadLine());
                     break;
             }
             return status;

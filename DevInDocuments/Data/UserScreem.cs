@@ -7,6 +7,7 @@ namespace DevInDocuments.Data
     internal class UserScreem
     {
         private static Employee _employee;
+
         public static void Welcome(Employee values)
         {
             _employee = values;
@@ -105,6 +106,7 @@ namespace DevInDocuments.Data
                 case "6":
                     try
                     {
+                        Console.Clear();
                         int docCode = UserStream.RecivieDocCode();
                         GeneralData.SearchOneDocument(docCode).ScreemDocument();
                     }

@@ -4,10 +4,10 @@ namespace DevInDocuments.Features
 {
     internal class ScreemMessage
     {
-        public static void RedAlert(int erroCode)
+        public static void RedAlert(int alertCode)
         {
             Console.ForegroundColor = ConsoleColor.Red;
-            switch (erroCode)
+            switch (alertCode)
             {
                 case 0:
                     Console.WriteLine("Invalid option, please try again");
@@ -19,11 +19,11 @@ namespace DevInDocuments.Features
             Console.ResetColor();
         }
 
-        public static void ClearRedAlert(int erroCode)
+        public static void ClearRedAlert(int alertCode)
         {
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Red;
-            switch (erroCode)
+            switch (alertCode)
             {
                 case 0:
                     Console.WriteLine("The Document recivie some value with invalid format.\nOperation canceled");
@@ -35,10 +35,10 @@ namespace DevInDocuments.Features
             Console.ResetColor();
         }
 
-        internal static void YellowAlert(int erroCode)
+        internal static void YellowAlert(int alertCode)
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
-            switch (erroCode)
+            switch (alertCode)
             {
                 case 0:
                     Console.WriteLine("Check if document is valid to confirm:\n" +
@@ -56,23 +56,37 @@ namespace DevInDocuments.Features
             }
             Console.ResetColor();
         }
-
-        internal static void GreenAlert(int erroCode)
+        internal static void ClearGreenAlert(int alertCode)
         {
             Console.ForegroundColor = ConsoleColor.Green;
-            switch (erroCode)
+            switch (alertCode)
             {
                 case 0:
-                    Console.WriteLine($"We have {GeneralData.documentsList.Count} Documents in our Bank System");
+                    Console.WriteLine("Document Found!\n");
                     break;
             }
             Console.ResetColor();
         }
 
-        internal static void GreenAlert(int erroCode, string name)
+        internal static void GreenAlert(int alertCode)
         {
             Console.ForegroundColor = ConsoleColor.Green;
-            switch (erroCode)
+            switch (alertCode)
+            {
+                case 0:
+                    Console.WriteLine($"We have {GeneralData.documentsList.Count} Documents in our Bank System");
+                    break;
+                case 1:
+                    Console.WriteLine("Document Found!\n");
+                    break;
+            }
+            Console.ResetColor();
+        }
+
+        internal static void GreenAlert(int alertCode, string name)
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            switch (alertCode)
             {
                 case 0:
                     Console.WriteLine($"\nBye bye {name} and have a good rest.");

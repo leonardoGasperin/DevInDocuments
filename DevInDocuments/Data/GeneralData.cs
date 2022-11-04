@@ -14,7 +14,6 @@ namespace DevInDocuments.Data
     
         public static void SearchByStatus(DocumentStatus value)
         {
-            Console.Clear();
             foreach(var item in documentsList)
             {
                 if (item.DocumentStatus == value)
@@ -28,9 +27,7 @@ namespace DevInDocuments.Data
             {
                 if (doc.DocumentCode == code)
                 {
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine("Document Found!\n");
-                    Console.ResetColor();
+                    ScreemMessage.ClearGreenAlert(0);
                     return doc;
                 }
             }
