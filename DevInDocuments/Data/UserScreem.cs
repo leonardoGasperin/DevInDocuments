@@ -1,20 +1,10 @@
 ﻿using DevInDocuments.Entities.Company;
-using DevInDocuments.Entities.Person;
 using DevInDocuments.Features;
 
 namespace DevInDocuments.Data
 {
     internal class UserScreem
     {
-        private static Employee _employee;
-
-        public static void Welcome(Employee values)
-        {
-            _employee = values;
-            Console.WriteLine($"Welcome Employee: {_employee.Name} to DevInDocuments!\n");
-            MainMenu();
-        }
-
         private static string InputStream()
         {
             string userStream = Console.ReadLine();
@@ -25,10 +15,7 @@ namespace DevInDocuments.Data
         public static void MainMenu()
         {
             ScreemMessage.GreenAlert(0);
-
-            Console.WriteLine("Please, what you want to do? Choose a option:\n" +
-                               "1) Register document\n2) Edit document itens\n3) Edit document status\n4) Screem document\n" +
-                               "0) Exit:");
+            ScreemMessage.MenuConsole(MenuType.Main);
 
             switch (InputStream())
             {
@@ -45,7 +32,7 @@ namespace DevInDocuments.Data
                     ScreemDocMenu();
                     break;
                 case "0":
-                    ScreemMessage.GreenAlert(1, _employee.Name);
+                    ScreemMessage.GreenAlert(2);
                     break;
                 default:
                     ScreemMessage.RedAlert(0);
@@ -56,8 +43,7 @@ namespace DevInDocuments.Data
 
         public static void RegisteringDocMenu()
         {
-            Console.WriteLine("What type of Document you want to register? Choose a option:\n" +
-                               "1) Tax Invoice\n2) Contracts\n3) Licenses\n0) Back to Main Menu:");
+            ScreemMessage.MenuConsole(MenuType.Register);
 
             switch (InputStream())
             {
@@ -82,9 +68,7 @@ namespace DevInDocuments.Data
 
         public static void ScreemDocMenu()
         {
-            Console.WriteLine("Please, what you want to screem? Choose a option:\n" +
-                               "1) Screen TaxBill\n2) Screem Contracts\n3) Screem Licenses\n4) By document status\n5) Screen all\n6)Search one by code\n" +
-                               "0) Back to Main Menu:");
+            ScreemMessage.MenuConsole(MenuType.ScremmDoc);
 
             switch (InputStream())
             {
@@ -98,7 +82,7 @@ namespace DevInDocuments.Data
                     new FuntionalitiesLicenses().ScreemAllDocumentType();
                     break;
                 case "4":
-                    GeneralData.SearchByStatus(ChooseStatus());
+                    GeneralData.SearchByStatus(UserStream.ChooseStatus());
                     break;
                 case "5":
                     new Contracts().ScreemAllDocuments();
@@ -122,76 +106,6 @@ namespace DevInDocuments.Data
                     break;
             }
             MainMenu();
-        }
-
-        public static TaxInvoice RecivieingTaxValues()
-        {
-            Console.WriteLine("Enter with establishment name:");
-            string newEstablishmentName = Console.ReadLine();
-            Console.WriteLine("Enter with CNPJ:");
-            string newCnpj = Console.ReadLine();
-            Console.WriteLine("Enter with total value price:");
-            string newTotalValue = Console.ReadLine();
-            Console.WriteLine("Enter with selled product name:");
-            string newSelledProductName = Console.ReadLine();
-            Console.WriteLine("Enter with tax type:");
-            ScreemMessage.YellowAlert(1);
-            TaxType newTaxType = UserStream.ChoosenTaxType(Console.ReadLine());
-            Console.WriteLine("Enter with total tax value percentage:");
-            string newTotalTaxValue = Console.ReadLine();
-
-            return new TaxInvoice(_employee.Id, newEstablishmentName, newCnpj, decimal.Parse(newTotalValue),
-                                  newSelledProductName, newTaxType, decimal.Parse(newTotalTaxValue));
-        }
-
-        public static Contracts RecivieingContractsValues()
-        {
-            Console.WriteLine("Enter with establishment name:");
-            string newEstablishmentName = Console.ReadLine();
-            Console.WriteLine("Enter with CNPJ:");
-            string newCnpj = Console.ReadLine();
-            Console.WriteLine("Enter with the goals:");
-            string newGoals = Console.ReadLine();
-            Console.WriteLine("Enter with witnesses names:");
-            string[] newWitnessName = { "", "" };
-            Console.WriteLine("witnesses 1 names:");
-            newWitnessName[0] = Console.ReadLine();
-            Console.WriteLine("witnesses 2 names:");
-            newWitnessName[1] = Console.ReadLine();
-            Console.WriteLine("Enter with an expiration date:");
-            Console.WriteLine("Enter with year:");
-            string year = Console.ReadLine();
-            Console.WriteLine("Enter with month:");
-            string month = Console.ReadLine();
-            Console.WriteLine("Enter with date:");
-            string day = Console.ReadLine();
-
-            return new Contracts(_employee.Id, newEstablishmentName, newCnpj, newGoals, newWitnessName, 
-                                 new DateTime(int.Parse(year), int.Parse(month), int.Parse(day)));
-        }
-
-        public static FuntionalitiesLicenses RecivieingLicensesValues()
-        {
-            Console.WriteLine("Enter with new establishment name:");
-            string newEstablishmentName = Console.ReadLine();
-            Console.WriteLine("Enter with new CNPJ:");
-            string newCnpj = Console.ReadLine();
-            Console.WriteLine("Enter with the adress:");
-            string newAdress = Console.ReadLine();
-            Console.WriteLine("Enter with the operation:");
-            ScreemMessage.YellowAlert(2);
-            Operation newOperation = UserStream.ChoosenOperationType(Console.ReadLine());
-
-            return new FuntionalitiesLicenses(_employee.Id, newEstablishmentName, newCnpj, newAdress, newOperation);
-        }
-
-        public static DocumentStatus ChooseStatus()
-        {
-            Console.WriteLine("Enter with Status type:");
-            ScreemMessage.YellowAlert(3);
-            DocumentStatus status = UserStream.ChoosenStatusType(Console.ReadLine());
-
-            return status;
         }
     }
 }

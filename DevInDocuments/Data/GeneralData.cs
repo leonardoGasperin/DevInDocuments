@@ -1,4 +1,5 @@
 ﻿using DevInDocuments.Entities.Company;
+using DevInDocuments.Entities.Person;
 using DevInDocuments.Features;
 
 namespace DevInDocuments.Data
@@ -6,10 +7,16 @@ namespace DevInDocuments.Data
     internal class GeneralData
     {
         public static List<DevInDocument> documentsList;
+        public static Employee _employee;
 
         public static void InitializeList()
         {
             documentsList = new List<DevInDocument>();
+        }
+
+        public static void InitializeMenu(Employee employee)
+        {
+            _employee = employee;
         }
     
         public static void SearchByStatus(DocumentStatus value)

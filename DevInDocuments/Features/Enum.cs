@@ -1,6 +1,6 @@
 ﻿namespace DevInDocuments.Features
 {
-    public enum TaxType
+    internal enum TaxType
     {
         ICMS,
         IPI,
@@ -8,7 +8,7 @@
         Other
     }
 
-    public enum Operation
+    internal enum Operation
     {
         Industry,
         Agricultural,
@@ -17,11 +17,19 @@
         Other
     }
 
-    public enum DocumentStatus
+    internal enum DocumentStatus
     {
         Active,
         Processing,
         Suspended,
         InvalidOption
+    }
+
+    internal enum MenuType
+    {
+        Main,
+        Register,
+        Editing,
+        ScremmDoc,
     }
 }

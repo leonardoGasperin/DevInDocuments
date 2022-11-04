@@ -7,7 +7,7 @@ namespace DevInDocuments.Data
     {
         internal static int RecivieDocCode()
         {
-            Console.WriteLine("Enter with Document code:");
+            ScreemMessage.FormsMessage(15);
             _ = int.TryParse(Console.ReadLine(), out var code);
             return code;
         }
@@ -19,13 +19,13 @@ namespace DevInDocuments.Data
                 switch (docCreation.GetType().Name)
                 {
                     case "TaxInvoice":
-                        docCreation = UserScreem.RecivieingTaxValues();
+                        docCreation = RecivieingTaxValues();
                         break;
                     case "Contracts":
-                        docCreation = UserScreem.RecivieingContractsValues();
+                        docCreation = RecivieingContractsValues();
                         break;
                     case "FuntionalitiesLicenses":
-                        docCreation = UserScreem.RecivieingLicensesValues();
+                        docCreation = RecivieingLicensesValues();
                         break;
                 }
 
@@ -50,17 +50,17 @@ namespace DevInDocuments.Data
                 switch (docEdit)
                 {
                     case TaxInvoice:
-                        var newTax = UserScreem.RecivieingTaxValues();
+                        var newTax = RecivieingTaxValues();
                         if (CheckDocumentToConfirm(newTax) == "1")
                             docEdit.ChangeItensDocument(newTax);
                         break;
                     case Contracts:
-                        var newContract = UserScreem.RecivieingContractsValues();
+                        var newContract = RecivieingContractsValues();
                         if (CheckDocumentToConfirm(newContract) == "1")
                             docEdit.ChangeItensDocument(newContract);
                         break;
                     case FuntionalitiesLicenses:
-                        var newLicence = UserScreem.RecivieingLicensesValues();
+                        var newLicence = RecivieingLicensesValues();
                         if (CheckDocumentToConfirm(newLicence) == "1")
                             docEdit.ChangeItensDocument(newLicence);
                         break;
@@ -79,7 +79,7 @@ namespace DevInDocuments.Data
             try
             {
                 var docEdit = GeneralData.SearchOneDocument(RecivieDocCode());
-                DocumentStatus status = UserScreem.ChooseStatus();
+                DocumentStatus status = ChooseStatus();
                 docEdit.ChangeDocumentStatus(status);
             }
             catch
@@ -97,6 +97,74 @@ namespace DevInDocuments.Data
             ScreemMessage.YellowAlert(0);
             ScreemMessage.RedAlert(1);
             return Console.ReadLine();
+        }
+
+        public static TaxInvoice RecivieingTaxValues()
+        {
+            ScreemMessage.FormsMessage(0);
+            string newEstablishmentName = Console.ReadLine();
+            ScreemMessage.FormsMessage(1);
+            string newCnpj = Console.ReadLine();
+            ScreemMessage.FormsMessage(2);
+            string newTotalValue = Console.ReadLine();
+            ScreemMessage.FormsMessage(3);
+            string newSelledProductName = Console.ReadLine();
+            ScreemMessage.FormsMessage(4);
+            ScreemMessage.YellowAlert(1);
+            TaxType newTaxType = UserStream.ChoosenTaxType(Console.ReadLine());
+            ScreemMessage.FormsMessage(5);
+            string newTotalTaxValue = Console.ReadLine();
+
+            return new TaxInvoice(GeneralData._employee.Id, newEstablishmentName, newCnpj, decimal.Parse(newTotalValue),
+                                  newSelledProductName, newTaxType, decimal.Parse(newTotalTaxValue));
+        }
+
+        public static Contracts RecivieingContractsValues()
+        {
+            ScreemMessage.FormsMessage(0);
+            string newEstablishmentName = Console.ReadLine();
+            ScreemMessage.FormsMessage(1);
+            string newCnpj = Console.ReadLine();
+            ScreemMessage.FormsMessage(6);
+            string newGoals = Console.ReadLine();
+            ScreemMessage.FormsMessage(7);
+            string[] newWitnessName = { "", "" };
+            newWitnessName[0] = Console.ReadLine();
+            ScreemMessage.FormsMessage(8);
+            newWitnessName[1] = Console.ReadLine();
+            ScreemMessage.FormsMessage(9);
+            string year = Console.ReadLine();
+            ScreemMessage.FormsMessage(10);
+            string month = Console.ReadLine();
+            ScreemMessage.FormsMessage(11);
+            string day = Console.ReadLine();
+
+            return new Contracts(GeneralData._employee.Id, newEstablishmentName, newCnpj, newGoals, newWitnessName,
+                                 new DateTime(int.Parse(year), int.Parse(month), int.Parse(day)));
+        }
+
+        public static FuntionalitiesLicenses RecivieingLicensesValues()
+        {
+            ScreemMessage.FormsMessage(0);
+            string newEstablishmentName = Console.ReadLine();
+            ScreemMessage.FormsMessage(1);
+            string newCnpj = Console.ReadLine();
+            ScreemMessage.FormsMessage(12);
+            string newAdress = Console.ReadLine();
+            ScreemMessage.FormsMessage(13);
+            ScreemMessage.YellowAlert(2);
+            Operation newOperation = UserStream.ChoosenOperationType(Console.ReadLine());
+
+            return new FuntionalitiesLicenses(GeneralData._employee.Id, newEstablishmentName, newCnpj, newAdress, newOperation);
+        }
+
+        public static DocumentStatus ChooseStatus()
+        {
+            ScreemMessage.FormsMessage(14);
+            ScreemMessage.YellowAlert(3);
+            DocumentStatus status = UserStream.ChoosenStatusType(Console.ReadLine());
+
+            return status;
         }
 
         public static TaxType ChoosenTaxType(string value)
