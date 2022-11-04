@@ -25,7 +25,6 @@ namespace DevInDocuments.Entities.Company
         public override void ChangeItensDocument(TaxInvoice taxEditValues)
         {
             base.ChangeItensDocument(taxEditValues);
-
             this.totalValue = taxEditValues.totalValue;
             this.SelledProductName = taxEditValues.SelledProductName;
             this.taxType = taxEditValues.taxType;
@@ -44,7 +43,6 @@ namespace DevInDocuments.Entities.Company
         public override void ScreemDocument()
         {
             base.ScreemDocument();
-
             Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.WriteLine("||--------------------------------TaxInvoice--------------------------------\n" +
                               $"||Total value: {this.totalValue:C}\n" +

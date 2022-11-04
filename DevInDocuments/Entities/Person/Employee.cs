@@ -2,8 +2,8 @@
 {
     internal class Employee
     {
-        private int id;
-        private string name;
+        private readonly int id;
+        private readonly string name;
         private readonly string adress;
         private readonly string afiliation;
         private readonly DateTime bornDate;

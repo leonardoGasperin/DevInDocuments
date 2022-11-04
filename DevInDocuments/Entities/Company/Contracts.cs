@@ -31,7 +31,6 @@ namespace DevInDocuments.Entities.Company
         public override void ChangeItensDocument(Contracts contractsEditValues)
         {
             base.ChangeItensDocument(contractsEditValues);
-
             this.goals = contractsEditValues.goals;
             this.witnessName = contractsEditValues.witnessName;
             this.expirationDate = contractsEditValues.expirationDate;

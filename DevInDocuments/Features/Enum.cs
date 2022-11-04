@@ -24,4 +24,11 @@
         Suspended,
         InvalidOption
     }
+
+    public enum WarningColor
+    {
+        Ok,
+        Warning,
+        Error
+    }
 }

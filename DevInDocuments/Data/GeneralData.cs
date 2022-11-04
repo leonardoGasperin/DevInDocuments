@@ -3,7 +3,7 @@ using DevInDocuments.Features;
 
 namespace DevInDocuments.Data
 {
-    internal static class GeneralData
+    internal class GeneralData
     {
         public static List<DevInDocument> documentsList;
 
@@ -14,6 +14,7 @@ namespace DevInDocuments.Data
     
         public static void SearchByStatus(DocumentStatus value)
         {
+            Console.Clear();
             foreach(var item in documentsList)
             {
                 if (item.DocumentStatus == value)
@@ -33,6 +34,7 @@ namespace DevInDocuments.Data
                     return doc;
                 }
             }
+            ScreemMessage.ClearRedAlert(1);
             return null;
         }
     }

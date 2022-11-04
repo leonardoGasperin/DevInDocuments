@@ -3,7 +3,7 @@ using DevInDocuments.Features;
 
 namespace DevInDocuments.Data
 {
-    internal static class UserStream
+    internal class UserStream
     {
         internal static int RecivieDocCode()
         {
@@ -29,27 +29,24 @@ namespace DevInDocuments.Data
                         break;
                 }
 
-                Console.Clear();
                 if (CheckDocumentToConfirm(docCreation) == "1")
                 {
                     docCreation.RegisterDocument(GeneralData.documentsList, docCreation);
                 }
+                Console.Clear();
             }
             catch
             {
-                Console.Clear();
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("The Document recivie some value with invalid format.\nOperation canceled");
-                Console.ResetColor();
+                ScreemMessage.ClearRedAlert(0);
             }
         }
 
         public static void EditingDocument()
         {
+            var docEdit = GeneralData.SearchOneDocument(RecivieDocCode());
+
             try
             {
-                var docEdit = GeneralData.SearchOneDocument(RecivieDocCode());
-
                 switch (docEdit)
                 {
                     case TaxInvoice:
@@ -68,17 +65,12 @@ namespace DevInDocuments.Data
                             docEdit.ChangeItensDocument(newLicence);
                         break;
                 }
-
-                Console.Clear();
-                UserScreem.MainMenu();
             }
             catch
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("The Document not be found or some value is not in valid format.\nOperation canceled");
-                Console.ResetColor();
-                UserScreem.MainMenu();
+                ScreemMessage.ClearRedAlert(0);
             }
+            UserScreem.MainMenu();
         }
 
         public static void EditingDocumentStatus()
@@ -88,29 +80,20 @@ namespace DevInDocuments.Data
                 var docEdit = GeneralData.SearchOneDocument(RecivieDocCode());
                 DocumentStatus status = UserScreem.ChooseStatus();
                 docEdit.ChangeDocumentStatus(status);
-                UserScreem.MainMenu();
             }
             catch
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("The Document not be found or code is not in valid format.");
-                Console.ResetColor();
-                UserScreem.MainMenu();
+                ScreemMessage.ClearRedAlert(0);
             }
+            UserScreem.MainMenu();
         }
 
         private static string CheckDocumentToConfirm(DevInDocument docCreation)
         {
             Console.Clear();
             docCreation.ScreemDocument();
-
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("Check if document is valid to confirm:\n" +
-                              "1) Save");
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("2) tipe anything to cancel");
-            Console.ResetColor();
-
+            ScreemMessage.YellowAlert(0);
+            ScreemMessage.RedAlert(1);
             return Console.ReadLine();
         }
 
@@ -132,13 +115,10 @@ namespace DevInDocuments.Data
                 case "3":
                     break;
                 default:
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Invalid option\n");
-                    Console.ResetColor();
+                    ScreemMessage.RedAlert(0);
                     _taxType = ChoosenTaxType(Console.ReadLine());
                     break;
             }
-
             return _taxType;
         }
 
@@ -163,13 +143,10 @@ namespace DevInDocuments.Data
                 case "4":
                     break;
                 default:
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Invalid option\n");
-                    Console.ResetColor();
+                    ScreemMessage.RedAlert(0);
                     _operation =  ChoosenOperationType(Console.ReadLine());
                     break;
             }
-
             return _operation;
         }
 
@@ -185,12 +162,9 @@ namespace DevInDocuments.Data
                 case "2":
                     return DocumentStatus.Suspended;
                 default:
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Invalid option\n");
-                    Console.ResetColor();
+                    ScreemMessage.RedAlert(0);
                     break;
             }
-
             return status;
         }
     }

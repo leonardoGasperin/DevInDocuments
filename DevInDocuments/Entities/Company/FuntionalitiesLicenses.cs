@@ -21,7 +21,6 @@ namespace DevInDocuments.Entities.Company
         public override void ChangeItensDocument(FuntionalitiesLicenses licenseEditValues)
         {
             base.ChangeItensDocument(licenseEditValues);
-
             this.adress = licenseEditValues.adress == "" ? this.adress : licenseEditValues.adress;
             this.operationArea = licenseEditValues.operationArea;
         }
@@ -38,7 +37,6 @@ namespace DevInDocuments.Entities.Company
         public override void ScreemDocument()
         {
             base.ScreemDocument();
-
             Console.ForegroundColor = ConsoleColor.DarkBlue;
             Console.WriteLine("||--------------------------------Licenses---------------------------------\n" +
                               $"||Adress: {this.adress}\n" +
