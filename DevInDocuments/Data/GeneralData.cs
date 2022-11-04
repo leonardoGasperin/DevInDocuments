@@ -24,7 +24,7 @@ namespace DevInDocuments.Data
             foreach(var item in documentsList)
             {
                 if (item.DocumentStatus == value)
-                    item.ScreemDocument();
+                    item.ScreamDocument();
             }
         }
 
@@ -37,7 +37,7 @@ namespace DevInDocuments.Data
                     return doc;
                 }
             }
-            ScreemMessage.ClearRedAlert(1);
+            ScreamMessage.ClearRedAlert(1);
             return null;
         }
     }

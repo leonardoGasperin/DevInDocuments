@@ -19,12 +19,12 @@ namespace DevInDocuments.Entities.Company
 
         public Contracts() { }
 
-        public override void ScreemAllDocumentType()
+        public override void ScreamAllDocumentType()
         {
             foreach (var contract in GeneralData.documentsList)
             {
                 if (contract is Contracts)
-                    contract.ScreemDocument();
+                    contract.ScreamDocument();
             }
         }
 
@@ -36,9 +36,9 @@ namespace DevInDocuments.Entities.Company
             this.expirationDate = contractsEditValues.expirationDate;
         }
 
-        public override void ScreemDocument()
+        public override void ScreamDocument()
         {
-            base.ScreemDocument();
+            base.ScreamDocument();
             Console.ForegroundColor = ConsoleColor.DarkGreen;
             Console.WriteLine("||--------------------------------Contracts--------------------------------\n" +
                               $"||Goals: {this.goals}\n" +

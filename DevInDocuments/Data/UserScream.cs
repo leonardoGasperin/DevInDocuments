@@ -3,7 +3,7 @@ using DevInDocuments.Features;
 
 namespace DevInDocuments.Data
 {
-    internal class UserScreem
+    internal class UserScream
     {
         private static string InputStream()
         {
@@ -14,8 +14,8 @@ namespace DevInDocuments.Data
 
         public static void MainMenu()
         {
-            ScreemMessage.GreenAlert(0);
-            ScreemMessage.MenuConsole(MenuType.Main);
+            ScreamMessage.GreenAlert(0);
+            ScreamMessage.MenuConsole(MenuType.Main);
 
             switch (InputStream())
             {
@@ -29,13 +29,13 @@ namespace DevInDocuments.Data
                     UserStream.EditingDocumentStatus();
                     break;
                 case "4":
-                    ScreemDocMenu();
+                    ScreamDocMenu();
                     break;
                 case "0":
-                    ScreemMessage.MenuConsole(MenuType.Exit);
+                    ScreamMessage.MenuConsole(MenuType.Exit);
                     break;
                 default:
-                    ScreemMessage.RedAlert(0);
+                    ScreamMessage.RedAlert(0);
                     MainMenu();
                     break;
             }
@@ -43,7 +43,7 @@ namespace DevInDocuments.Data
 
         public static void RegisteringDocMenu()
         {
-            ScreemMessage.MenuConsole(MenuType.Register);
+            ScreamMessage.MenuConsole(MenuType.Register);
 
             switch (InputStream())
             {
@@ -59,50 +59,50 @@ namespace DevInDocuments.Data
                 case "0":
                     break;
                 default:
-                    ScreemMessage.RedAlert(0);
+                    ScreamMessage.RedAlert(0);
                     RegisteringDocMenu();
                     break;
             }
             MainMenu();
         }
 
-        public static void ScreemDocMenu()
+        public static void ScreamDocMenu()
         {
-            ScreemMessage.MenuConsole(MenuType.ScremmDoc);
+            ScreamMessage.MenuConsole(MenuType.ScremmDoc);
 
             switch (InputStream())
             {
                 case "1":
-                    new TaxInvoice().ScreemAllDocumentType();
+                    new TaxInvoice().ScreamAllDocumentType();
                     break;
                 case "2":
-                    new Contracts().ScreemAllDocumentType();
+                    new Contracts().ScreamAllDocumentType();
                     break;
                 case "3":
-                    new FuntionalitiesLicenses().ScreemAllDocumentType();
+                    new FuntionalitiesLicenses().ScreamAllDocumentType();
                     break;
                 case "4":
                     GeneralData.SearchByStatus(UserStream.ChooseStatus());
                     break;
                 case "5":
-                    new Contracts().ScreemAllDocuments();
+                    new Contracts().ScreamAllDocuments();
                     break;
                 case "6":
                     try
                     {
-                        int docCode = UserStream.RecivieDocCode();
-                        GeneralData.SearchOneDocument(docCode).ScreemDocument();
+                        int docCode = UserStream.ReceveidDocCode();
+                        GeneralData.SearchOneDocument(docCode).ScreamDocument();
                     }
                     catch
                     {
-                        ScreemMessage.ClearRedAlert(0);
+                        ScreamMessage.ClearRedAlert(0);
                     }
                     break;
                 case "0":
                     break;
                 default:
-                    ScreemMessage.RedAlert(0);
-                    ScreemDocMenu();
+                    ScreamMessage.RedAlert(0);
+                    ScreamDocMenu();
                     break;
             }
             MainMenu();

@@ -7,4 +7,4 @@ var _employee = new Employee("Leonardo Vinicius De Gasperin", "Jaridm Porto Belo
 
 GeneralData.InitializeMenu(_employee);
 GeneralData.InitializeList();
-ScreemMessage.Welcome();
+ScreamMessage.Welcome();

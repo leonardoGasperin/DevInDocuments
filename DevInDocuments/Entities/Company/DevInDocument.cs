@@ -62,20 +62,20 @@ namespace DevInDocuments.Entities.Company
             this.documentStatus = status;
         }
 
-        public void ScreemAllDocuments()
+        public void ScreamAllDocuments()
         {
             foreach (DevInDocument document in GeneralData.documentsList)
             {
-                document.ScreemDocument();
+                document.ScreamDocument();
             }
             Console.ResetColor();
         }
 
-        public virtual void ScreemAllDocumentType() 
+        public virtual void ScreamAllDocumentType() 
         {
         }
 
-        public virtual void ScreemDocument()
+        public virtual void ScreamDocument()
         {
             Console.ForegroundColor = ConsoleColor.DarkCyan;
             Console.WriteLine("||################################DOCUMENT#################################\n" +

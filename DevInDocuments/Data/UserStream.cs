@@ -5,9 +5,9 @@ namespace DevInDocuments.Data
 {
     internal class UserStream
     {
-        internal static int RecivieDocCode()
+        internal static int ReceveidDocCode()
         {
-            ScreemMessage.FormsMessage(15);
+            ScreamMessage.FormsMessage(15);
             _ = int.TryParse(Console.ReadLine(), out var code);
             return code;
         }
@@ -19,13 +19,13 @@ namespace DevInDocuments.Data
                 switch (docCreation.GetType().Name)
                 {
                     case "TaxInvoice":
-                        docCreation = RecivieingTaxValues();
+                        docCreation = ReceveidTaxValues();
                         break;
                     case "Contracts":
-                        docCreation = RecivieingContractsValues();
+                        docCreation = ReceveidContractsValues();
                         break;
                     case "FuntionalitiesLicenses":
-                        docCreation = RecivieingLicensesValues();
+                        docCreation = ReceveidLicensesValues();
                         break;
                 }
 
@@ -37,30 +37,30 @@ namespace DevInDocuments.Data
             }
             catch
             {
-                ScreemMessage.ClearRedAlert(0);
+                ScreamMessage.ClearRedAlert(0);
             }
         }
 
         public static void EditingDocument()
         {
-            var docEdit = GeneralData.SearchOneDocument(RecivieDocCode());
+            var docEdit = GeneralData.SearchOneDocument(ReceveidDocCode());
 
             try
             {
                 switch (docEdit)
                 {
                     case TaxInvoice:
-                        var newTax = RecivieingTaxValues();
+                        var newTax = ReceveidTaxValues();
                         if (CheckDocumentToConfirm(newTax) == "1")
                             docEdit.ChangeItensDocument(newTax);
                         break;
                     case Contracts:
-                        var newContract = RecivieingContractsValues();
+                        var newContract = ReceveidContractsValues();
                         if (CheckDocumentToConfirm(newContract) == "1")
                             docEdit.ChangeItensDocument(newContract);
                         break;
                     case FuntionalitiesLicenses:
-                        var newLicence = RecivieingLicensesValues();
+                        var newLicence = ReceveidLicensesValues();
                         if (CheckDocumentToConfirm(newLicence) == "1")
                             docEdit.ChangeItensDocument(newLicence);
                         break;
@@ -69,90 +69,90 @@ namespace DevInDocuments.Data
             }
             catch
             {
-                ScreemMessage.ClearRedAlert(0);
+                ScreamMessage.ClearRedAlert(0);
             }
-            UserScreem.MainMenu();
+            UserScream.MainMenu();
         }
 
         public static void EditingDocumentStatus()
         {
             try
             {
-                var docEdit = GeneralData.SearchOneDocument(RecivieDocCode());
+                var docEdit = GeneralData.SearchOneDocument(ReceveidDocCode());
                 DocumentStatus status = ChooseStatus();
                 docEdit.ChangeDocumentStatus(status);
             }
             catch
             {
-                ScreemMessage.ClearRedAlert(1);
+                ScreamMessage.ClearRedAlert(1);
             }
             Console.Clear();
-            UserScreem.MainMenu();
+            UserScream.MainMenu();
         }
 
         private static string CheckDocumentToConfirm(DevInDocument docCreation)
         {
             Console.Clear();
-            docCreation.ScreemDocument();
-            ScreemMessage.YellowAlert(0);
-            ScreemMessage.RedAlert(1);
+            docCreation.ScreamDocument();
+            ScreamMessage.YellowAlert(0);
+            ScreamMessage.RedAlert(1);
             return Console.ReadLine();
         }
 
-        public static TaxInvoice RecivieingTaxValues()
+        public static TaxInvoice ReceveidTaxValues()
         {
-            ScreemMessage.FormsMessage(0);
+            ScreamMessage.FormsMessage(0);
             string newEstablishmentName = Console.ReadLine();
-            ScreemMessage.FormsMessage(1);
+            ScreamMessage.FormsMessage(1);
             string newCnpj = Console.ReadLine();
-            ScreemMessage.FormsMessage(2);
+            ScreamMessage.FormsMessage(2);
             string newTotalValue = Console.ReadLine();
-            ScreemMessage.FormsMessage(3);
+            ScreamMessage.FormsMessage(3);
             string newSelledProductName = Console.ReadLine();
-            ScreemMessage.FormsMessage(4);
-            ScreemMessage.YellowAlert(1);
+            ScreamMessage.FormsMessage(4);
+            ScreamMessage.YellowAlert(1);
             TaxType newTaxType = UserStream.ChoosenTaxType(Console.ReadLine());
-            ScreemMessage.FormsMessage(5);
+            ScreamMessage.FormsMessage(5);
             string newTotalTaxValue = Console.ReadLine();
 
             return new TaxInvoice(GeneralData._employee.Id, newEstablishmentName, newCnpj, decimal.Parse(newTotalValue),
                                   newSelledProductName, newTaxType, decimal.Parse(newTotalTaxValue));
         }
 
-        public static Contracts RecivieingContractsValues()
+        public static Contracts ReceveidContractsValues()
         {
-            ScreemMessage.FormsMessage(0);
+            ScreamMessage.FormsMessage(0);
             string newEstablishmentName = Console.ReadLine();
-            ScreemMessage.FormsMessage(1);
+            ScreamMessage.FormsMessage(1);
             string newCnpj = Console.ReadLine();
-            ScreemMessage.FormsMessage(6);
+            ScreamMessage.FormsMessage(6);
             string newGoals = Console.ReadLine();
-            ScreemMessage.FormsMessage(7);
+            ScreamMessage.FormsMessage(7);
             string[] newWitnessName = { "", "" };
             newWitnessName[0] = Console.ReadLine();
-            ScreemMessage.FormsMessage(8);
+            ScreamMessage.FormsMessage(8);
             newWitnessName[1] = Console.ReadLine();
-            ScreemMessage.FormsMessage(9);
+            ScreamMessage.FormsMessage(9);
             string year = Console.ReadLine();
-            ScreemMessage.FormsMessage(10);
+            ScreamMessage.FormsMessage(10);
             string month = Console.ReadLine();
-            ScreemMessage.FormsMessage(11);
+            ScreamMessage.FormsMessage(11);
             string day = Console.ReadLine();
 
             return new Contracts(GeneralData._employee.Id, newEstablishmentName, newCnpj, newGoals, newWitnessName,
                                  new DateTime(int.Parse(year), int.Parse(month), int.Parse(day)));
         }
 
-        public static FuntionalitiesLicenses RecivieingLicensesValues()
+        public static FuntionalitiesLicenses ReceveidLicensesValues()
         {
-            ScreemMessage.FormsMessage(0);
+            ScreamMessage.FormsMessage(0);
             string newEstablishmentName = Console.ReadLine();
-            ScreemMessage.FormsMessage(1);
+            ScreamMessage.FormsMessage(1);
             string newCnpj = Console.ReadLine();
-            ScreemMessage.FormsMessage(12);
+            ScreamMessage.FormsMessage(12);
             string newAdress = Console.ReadLine();
-            ScreemMessage.FormsMessage(13);
-            ScreemMessage.YellowAlert(2);
+            ScreamMessage.FormsMessage(13);
+            ScreamMessage.YellowAlert(2);
             Operation newOperation = UserStream.ChoosenOperationType(Console.ReadLine());
 
             return new FuntionalitiesLicenses(GeneralData._employee.Id, newEstablishmentName, newCnpj, newAdress, newOperation);
@@ -160,8 +160,8 @@ namespace DevInDocuments.Data
 
         public static DocumentStatus ChooseStatus()
         {
-            ScreemMessage.FormsMessage(14);
-            ScreemMessage.YellowAlert(3);
+            ScreamMessage.FormsMessage(14);
+            ScreamMessage.YellowAlert(3);
             DocumentStatus status = UserStream.ChoosenStatusType(Console.ReadLine());
 
             return status;
@@ -185,7 +185,7 @@ namespace DevInDocuments.Data
                 case "3":
                     break;
                 default:
-                    ScreemMessage.RedAlert(0);
+                    ScreamMessage.RedAlert(0);
                     _taxType = ChoosenTaxType(Console.ReadLine());
                     break;
             }
@@ -213,7 +213,7 @@ namespace DevInDocuments.Data
                 case "4":
                     break;
                 default:
-                    ScreemMessage.RedAlert(0);
+                    ScreamMessage.RedAlert(0);
                     _operation =  ChoosenOperationType(Console.ReadLine());
                     break;
             }
@@ -232,7 +232,7 @@ namespace DevInDocuments.Data
                 case "2":
                     return DocumentStatus.Suspended;
                 default:
-                    ScreemMessage.RedAlert(0);
+                    ScreamMessage.RedAlert(0);
                     status = ChoosenStatusType(Console.ReadLine());
                     break;
             }

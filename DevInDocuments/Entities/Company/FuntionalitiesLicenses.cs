@@ -25,18 +25,18 @@ namespace DevInDocuments.Entities.Company
             this.operationArea = licenseEditValues.operationArea;
         }
 
-        public override void ScreemAllDocumentType()
+        public override void ScreamAllDocumentType()
         {
             foreach (var document in GeneralData.documentsList)
             {
                 if(document is FuntionalitiesLicenses)
-                    document.ScreemDocument();
+                    document.ScreamDocument();
             }
         }
 
-        public override void ScreemDocument()
+        public override void ScreamDocument()
         {
-            base.ScreemDocument();
+            base.ScreamDocument();
             Console.ForegroundColor = ConsoleColor.DarkBlue;
             Console.WriteLine("||--------------------------------Licenses---------------------------------\n" +
                               $"||Adress: {this.adress}\n" +

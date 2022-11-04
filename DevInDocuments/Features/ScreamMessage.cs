@@ -1,17 +1,15 @@
 ﻿using DevInDocuments.Data;
-using DevInDocuments.Entities.Person;
-using System.Xml.Linq;
 
 namespace DevInDocuments.Features
 {
-    internal class ScreemMessage
+    internal class ScreamMessage
     {
 
         public static void Welcome()
         {
             Console.WriteLine("||#########################################################################||\n" +
                               $"||    Welcome Employee: {GeneralData._employee.Name} to DevInDocuments!   ||");
-            UserScreem.MainMenu();
+            UserScream.MainMenu();
         }
 
         public static void MenuConsole(MenuType type)
@@ -180,7 +178,7 @@ namespace DevInDocuments.Features
             {
                 case 0:
                     Console.WriteLine("||#########################################################################||\n" +
-                                      "||              The Document recivie some value with invalid format.       ||\n" +
+                                      "||              The Document receveid some value with invalid format.       ||\n" +
                                       "||              Operation canceled                                         ||\n" +
                                       "||#########################################################################||");
                     break;

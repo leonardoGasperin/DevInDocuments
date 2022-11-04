@@ -31,18 +31,18 @@ namespace DevInDocuments.Entities.Company
             this.totalTaxValue = taxEditValues.totalTaxValue;
         }
 
-        public override void ScreemAllDocumentType()
+        public override void ScreamAllDocumentType()
         {
             foreach (var document in GeneralData.documentsList)
             {
                 if(document is TaxInvoice)
-                    document.ScreemDocument();
+                    document.ScreamDocument();
             }
         }
 
-        public override void ScreemDocument()
+        public override void ScreamDocument()
         {
-            base.ScreemDocument();
+            base.ScreamDocument();
             Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.WriteLine("||--------------------------------TaxInvoice--------------------------------\n" +
                               $"||Total value: {this.totalValue:C}\n" +
