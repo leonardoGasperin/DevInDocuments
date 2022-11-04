@@ -138,7 +138,7 @@ namespace DevInDocuments.Features
                     Console.WriteLine("0) ICMS\n1) IPI\n2) IOF\n3) Other");
                     break;
                 case 2:
-                    Console.WriteLine("0) ICMS\n1) IPI\n2) IOF\n3) Other");
+                    Console.WriteLine("0) Industry\n1) Agricultural\n2) Metallurgical\n3) Technological\n 4) Others");
                     break;
                 case 3:
                     Console.WriteLine("0) Active\n1) Processing\n2) Suspended");
