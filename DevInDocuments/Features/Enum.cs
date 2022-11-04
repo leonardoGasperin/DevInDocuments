@@ -29,7 +29,7 @@
     {
         Main,
         Register,
-        Editing,
         ScremmDoc,
+        Exit
     }
 }

@@ -32,7 +32,7 @@ namespace DevInDocuments.Data
                     ScreemDocMenu();
                     break;
                 case "0":
-                    ScreemMessage.GreenAlert(2);
+                    ScreemMessage.MenuConsole(MenuType.Exit);
                     break;
                 default:
                     ScreemMessage.RedAlert(0);

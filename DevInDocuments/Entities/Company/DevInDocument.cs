@@ -83,7 +83,7 @@ namespace DevInDocuments.Entities.Company
                               $"||Document Code: [{this.documentCode}]\n" +
                               $"||System Date: {systemDate}\n" +
                               $"||Date of Last Changes of Document: {this.lastChangeDate}\n" +
-                              $"||Name of establishment: {this.establishmentName} \n" +
+                              $"||Name of establishment: {this.establishmentName}\n" +
                               $"||CNPJ: {this.cnpj}\n" +
                               $"||Document Status: {this.documentStatus}");
         }

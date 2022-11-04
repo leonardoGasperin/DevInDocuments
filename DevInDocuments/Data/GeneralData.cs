@@ -34,7 +34,6 @@ namespace DevInDocuments.Data
             {
                 if (doc.DocumentCode == code)
                 {
-                    ScreemMessage.ClearGreenAlert(0);
                     return doc;
                 }
             }

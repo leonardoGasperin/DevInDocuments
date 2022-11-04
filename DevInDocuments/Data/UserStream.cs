@@ -65,12 +65,12 @@ namespace DevInDocuments.Data
                             docEdit.ChangeItensDocument(newLicence);
                         break;
                 }
+                Console.Clear();
             }
             catch
             {
                 ScreemMessage.ClearRedAlert(0);
             }
-            Console.Clear();
             UserScreem.MainMenu();
         }
 
