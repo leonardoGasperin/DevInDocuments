@@ -65,7 +65,6 @@ namespace DevInDocuments.Data
                             docEdit.ChangeItensDocument(newLicence);
                         break;
                 }
-                Console.Clear();
             }
             catch
             {

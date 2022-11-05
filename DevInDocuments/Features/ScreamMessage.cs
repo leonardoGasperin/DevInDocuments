@@ -181,7 +181,7 @@ namespace DevInDocuments.Features
             {
                 case 0:
                     Console.WriteLine("||#########################################################################||\n" +
-                                      "||              The Document receveid some value with invalid format.       ||\n" +
+                                      "||              The Document receveid some value with invalid format.      ||\n" +
                                       "||              Operation canceled                                         ||\n" +
                                       "||#########################################################################||");
                     break;
