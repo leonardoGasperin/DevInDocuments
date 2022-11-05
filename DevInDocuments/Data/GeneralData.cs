@@ -30,7 +30,7 @@ namespace DevInDocuments.Data
 
         public static DevInDocument SearchOneDocument(int code)
         {
-            foreach (var doc in GeneralData.documentsList)
+            foreach (var doc in documentsList)
             {
                 if (doc.DocumentCode == code)
                 {

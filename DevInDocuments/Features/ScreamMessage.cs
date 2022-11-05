@@ -1,4 +1,7 @@
-﻿using DevInDocuments.Data;
+﻿/*###
+ *### Observation the code on line 250 one day with much documents registred the drawned box will disconfigure out
+ */
+using DevInDocuments.Data;
 
 namespace DevInDocuments.Features
 {
@@ -25,7 +28,7 @@ namespace DevInDocuments.Features
                                       "||              1) Register document                                       ||\n" +
                                       "||              2) Edit document itens                                     ||\n" +
                                       "||              3) Edit document status                                    ||\n" +
-                                      "||              4) Screem document                                         ||\n" +
+                                      "||              4) Scream document                                         ||\n" +
                                       "||              0) Exit                                                    ||\n" +
                                       "||#########################################################################||");
                     break;
@@ -41,14 +44,14 @@ namespace DevInDocuments.Features
                     break;
                 case MenuType.ScremmDoc:
                     Console.WriteLine("||#########################################################################||\n" +
-                                      "||        Please, what you want to screem? Choose a option:                ||\n" +
+                                      "||        Please, what you want to scream? Choose a option:                ||\n" +
                                       "||-------------------------------------------------------------------------||\n" +
-                                      "||              1) Screen TaxBill                                          ||\n" +
-                                      "||              2) Screem Contracts                                        ||\n" +
-                                      "||              3) Screem Licenses                                         ||\n" +
+                                      "||              1) Screan TaxBill                                          ||\n" +
+                                      "||              2) Scream Contracts                                        ||\n" +
+                                      "||              3) Scream Licenses                                         ||\n" +
                                       "||              4) By document status                                      ||\n" +
-                                      "||              5) Screen all                                              ||\n" +
-                                      "||              6)Search one by code                                       ||\n" +
+                                      "||              5) Scream all                                              ||\n" +
+                                      "||              6) Search one by code                                      ||\n" +
                                       "||              0) Back to Main Menu                                       ||\n" +
                                       "||#########################################################################||");
                     break;
@@ -104,12 +107,12 @@ namespace DevInDocuments.Features
                 case 7:
                     Console.WriteLine("||-------------------------------------------------------------------------||\n" +
                                       "||        Enter with witnesses names:                                      ||\n" +
-                                      "||              witnesses 1 names                                          ||\n" +
+                                      "||              witness 1 names                                          ||\n" +
                                       "||-------------------------------------------------------------------------||");
                     break;
                 case 8:
                     Console.WriteLine("||-------------------------------------------------------------------------||\n" +
-                                      "||              witnesses 2 names                                          ||\n" +
+                                      "||              witness 2 names                                          ||\n" +
                                       "||-------------------------------------------------------------------------||");
                     break;
                 case 9:
