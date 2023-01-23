@@ -70,3 +70,9 @@
 	* Nota fiscal
 	* Licenças de funcionamento
 	* Contrato
+***
+
+##### Para rodar 
+
+***
+Você precisara ter uma IDE compativel com C# .Net versão 6 ou 7 a aplicação ira abrir em terminal.
